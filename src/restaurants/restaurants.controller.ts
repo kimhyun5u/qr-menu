@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { RestaurantsService } from './restaurants.service';
 import { createRestaurantDto } from './dto/create-restaurant.dto';
 import { Restaurant } from './schemas/restaurants.schema';
@@ -19,8 +19,10 @@ export class RestaurantsController {
     }
 
     @Get()
-    async findAll(): Promise<Restaurant[]> {
-        return this.restaurantService.findAll();
+    async findAll(@Query('name') name: string): Promise<Restaurant[]> {
+        if (name) 
+            return this.restaurantService.findByName(name);
+        else
+            return this.restaurantService.findAll();
     }
-    
 }

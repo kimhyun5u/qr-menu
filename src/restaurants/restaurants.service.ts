@@ -17,6 +17,9 @@ export class RestaurantsService {
         return this.restaurantModel.findOne({ _id: id }).exec();
     }
     
+    async findByName(name: string): Promise<Restaurant[]> {
+        return this.restaurantModel.find({name: {$regex: '.*' + name + '.*'}}).exec();
+    }
     async findAll(): Promise<Restaurant[]> {
         return this.restaurantModel.find().exec();
     }
