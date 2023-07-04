@@ -10,6 +10,9 @@ export class Restaurant {
 
     @Prop([String])
     menus: string[];
+
+    @Prop()
+    pdf_menu_image_url: string;
 }
 
 export const restaurantSchema = SchemaFactory.createForClass(Restaurant);
