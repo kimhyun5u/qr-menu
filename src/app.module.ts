@@ -7,7 +7,11 @@ import { join } from 'path';
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest'), 
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'static'),
+      rootPath: join(__dirname, '..', '/static/'),
+      serveStaticOptions:  {
+        index: false,
+        fallthrough: false,
+      }
     }), 
     RestaurantsModule],
 })
