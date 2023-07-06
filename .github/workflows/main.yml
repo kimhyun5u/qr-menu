@@ -21,7 +21,7 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-20.04
-    step:
+    steps:
       - name: Checkout Source Code
         uses: actions/cehckout@v3
       - name: Set up docker build
