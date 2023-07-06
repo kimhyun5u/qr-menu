@@ -62,7 +62,7 @@ jobs:
           password: ${{ secrets.QR_MENU_GHCR_TOKEN }}
       - name: Run docker
         run: /
-          docker stop ${{ env.DOCKER_COTAINER }} && docker rm ${{ env.DOCEKR_CONTAINER }} && docker rmi ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker stop ${{ env.DOCKER_CONTAINER }} && docker rm ${{ env.DOCKER_CONTAINER }} && docker rmi ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           docker run -d -p 80:3000 --name ${{ env.DOCKER_CONTAINER }} --restart always ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         
         
