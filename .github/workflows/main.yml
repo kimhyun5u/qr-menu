@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.DOCKER_IMAGE }}:latest
+          tags: qr-menu:latest
         
         
         
