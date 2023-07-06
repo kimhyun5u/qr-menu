@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  mongo:
+      image: mongo:6.0.6
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: pw1234
+      volumes:
+        - ~/data:/data/db
+      ports:
+        - "27017:27017"
+      networks:
+        - qr-menu-network
+  qr-menu:
+    image: qr-menu
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    command: npm run start
+    depends_on:
+      - mongo
+    networks:
+      - qr-menu-network
+  
+networks:
+  qr-menu-network:
