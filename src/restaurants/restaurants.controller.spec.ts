@@ -1,10 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RestaurantsController } from './restaurants.controller';
 import { RestaurantsService } from './restaurants.service';
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import { Connection } from 'mongoose';
-import { connect } from 'http2';
-import { MongooseModule } from '@nestjs/mongoose';
 
 describe('RestaurantsController', () => {
   let controller: RestaurantsController;
