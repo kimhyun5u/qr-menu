@@ -62,7 +62,6 @@ jobs:
           password: ${{ secrets.QR_MENU_GHCR_TOKEN }}
       - name: Run docker
         run:
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          docker compose -f /home/ubuntu/compose/docker-compose.yml up
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest && docker compose -f /home/ubuntu/compose/docker-compose.yml up
         
         
