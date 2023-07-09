@@ -59,17 +59,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.QR_MENU_GHCR_TOKEN }}
+      - name: Stop and Remove running Containers and Images
+        run:
+          docker stop ${{ env.DOCKER_CONTAINER }} || true
+          docker rm ${{ env.DOCKER_CONTAINER }} || true
+          docker rmi ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest || true
       - name: Run docker
         run:
-          docker stop ${{ env.DOCKER_CONTAINER }}
-      - name: test1
-        run:
-          docker rm ${{ env.DOCKER_CONTAINER }}
-      - name: test1
-        run:
-          docker rmi ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-      - name: test1
-        run: 
           docker run --name ${{ env.DOCKER_CONTAINER }} -d -p 80:3000 --restart always ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         
         
