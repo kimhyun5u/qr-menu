@@ -48,8 +48,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
   deploy:
     needs: build
     runs-on: [self-hosted, label-qr-menu]
@@ -62,6 +61,7 @@ jobs:
           password: ${{ secrets.QR_MENU_GHCR_TOKEN }}
       - name: Run docker
         run:
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main && docker compose -f /home/ubuntu/compose/docker-compose.yml up
+          docker stop ${{ env.DOCKER_CONTAINER }} && docker rm ${{ env.DOCKER_CONTAINER }} && docker rmi ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker run --name ${{ env.DOCKER_CONTAINER }} -d -p 80:3000 --restart always ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         
         
