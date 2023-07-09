@@ -10,5 +10,11 @@ ADD . /app/
 # 프로젝트에 사용되는 의존성 설치
 RUN npm install
 
+# nest.js 빌드
+RUN npm run build
+
+# 포트 개방
+EXPOSE 3000
+
 # nest.js 실행
-RUN npm run start
+ENTRYPOINT npm run start
