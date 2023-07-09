@@ -5,7 +5,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://root:pw1234@compose-mongo-1:27017/?authMechanism=DEFAULT'), 
+    MongooseModule.forRoot('mongodb://root:pw1234@mogno:27017/?authMechanism=DEFAULT'), 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '/static/'),
       serveStaticOptions:  {
